@@ -31,9 +31,15 @@ The line positions must be same! (Just for this initial version).
 
 ## Usage
 
-`createLattice.py`
+`mkdir test`
 
-`createStructure.py`
+`cp createLattice.py createStructure.py POSCAR test/`
+
+`chmod +x createLattice.py createStructure.py`
+ 
+`./createLattice.py`
+
+`./createStructure.py`
 
 ## Output File
 
