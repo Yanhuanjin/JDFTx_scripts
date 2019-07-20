@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import re
 import math
+import sys
 from compiler.ast import flatten
 from decimal import *
 
@@ -10,6 +11,11 @@ def read_pos(filename):
 	return lines
 
 def is_hex(lattice_line):
+#**********************************************************
+#***!!! For convenience, I write the func like this. !!!***
+#***!!! However, in real condictions, it should be   !!!***
+#***!!! writen using the angles between Vectors.     !!!***
+#**********************************************************
 	Hexagonal = False
 	for line in lattice_line:
 		for num in line:
@@ -66,8 +72,18 @@ def is_fix(fix_in):
 	else:
 		return False
 
+def drop_zero_lines():
+	pass
+
+
+
 def main():
-	filename = "POSCAR"
+	try:
+		sys.argv[1]
+	except Exception as ret:
+		print("   Usage: createStructure.py POSCAR.")
+		exit()
+	filename = sys.argv[1]
 	lines = read_pos(filename)
 	regex = re.compile('\s+')
 	# get lattice
@@ -75,8 +91,15 @@ def main():
 	lattice_line = list()
 	for i in range(0,3):
 		lattice_line.append(regex.split(lattice_lines[i].strip()))
-	# get label
+	# get label & support CONTCAR
 	label_list = get_label(regex, lines)
+	count_non_zero_lines = len(label_list) + 9
+	count_total_lines = len(lines)
+	count_useless_line = count_total_lines - count_non_zero_lines
+	if count_useless_line == 0:
+		pass
+	else:
+		lines = lines[:-count_useless_line]
 	# get pos
 	pos_lines = lines[9:]
 	pos_list = list()
@@ -92,7 +115,8 @@ def main():
 			fix_flag = " 1"
 		else:
 			fix_flag = " 0"
-		out_string = "ion "+ str(label_list[i]) + " " + car_x + " " + car_y + " " + car_z + fix_flag 
+		out_string = '{0:>3}{1:>3}{2:>19}{3:>20}{4:>20}{5:>3}'.format("ion", 
+				str(label_list[i]), car_x, car_y, car_z, fix_flag)
 		out_string_list.append(out_string)
 	# write to file
 	with open("structure.in", "w") as f:

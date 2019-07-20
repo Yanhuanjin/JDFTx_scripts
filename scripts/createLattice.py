@@ -2,13 +2,14 @@
 # Created by YHJin 2019.7.13 12:29
 # Require file: POSCAR
 # How to use: ang2bohr.py
+import sys
 
 def log():
 	print ">> Generation Complete.\nPlease make sure:\n 1. The crystal system is right.\n 2. You know how it works!!!\n"
 
-def read_POS():
+def read_POS(filename):
 	try:
-		with open('POSCAR','r') as f:
+		with open(filename,'r') as f:
 			lines = f.readlines()
 		total_list = list()
 		for i in range(2, 5):
@@ -42,7 +43,13 @@ def is_hex(pos_line):
 
 def main():
 	# Format output
-	pos_line = read_POS()
+	try:
+		sys.argv[1]
+	except Exception as ret:
+		print("   Usage: createLattice.py POSCAR.")
+		exit()
+	filename = sys.argv[1]
+	pos_line = read_POS(filename)
 	hex = is_hex(pos_line)
 	with open("lattice.in", 'w') as f:
 		f.write("lattice\\"+"\n")
@@ -56,7 +63,7 @@ def main():
 			print('The crystal system is: Hexagonal.\n')
 			a = pos_line[0][0]
 			c = pos_line[-1][-1]
-			f.write("Hexagonal\\\n%.15f\\\n%.15f" %(a, c)),
+			f.write("Hexagonal %.15f %.15f" %(a, c)),
 	log()
 
 
