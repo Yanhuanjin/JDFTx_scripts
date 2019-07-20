@@ -37,9 +37,10 @@ The line positions must be same! (Just for this initial version).
 
 `chmod +x createLattice.py createStructure.py`
  
-`./createLattice.py`
+`./createLattice.py POSCAR`
+or `./createLattice.py CONTCAR`
 
-`./createStructure.py`
+`./createStructure.py POSCAR` or `./createStructure.py CONTCAR`
 
 ## Output File
 
