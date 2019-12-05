@@ -1,5 +1,5 @@
 # JDFTx_scripts
-Some scripts to create the input file for JDFTx: Using the POSCAR
+Some scripts to create the input file for JDFTx: Using the POSCAR or .xsd
 
 ## Introdution
 
@@ -110,7 +110,7 @@ An input file to do a single point neutral calculation.
 
 A scirpt to do a series of fix potential calculations.
 
-For example, we define those lines in it to do a series of calculations in a potential range of [-1, 1] eV. (It is also metioned in the official website).
+For example, we wrote those lines in it to do a series of calculations in a potential range of [-1, 1] eV. (It is also metioned in the official website).
 
 	for iMu in {-10..10..2}; do
     	export mu="$(echo $iMu | awk '{printf("%.4f", -4.4/27.2114+0.1*$1/27.2114)}')"
