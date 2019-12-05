@@ -118,3 +118,5 @@ For example, we wrote those lines in it to do a series of calculations in a pote
 	done
 
  WARNING：***Before do any calculations, you should know what you are doing! A dry run without changing the parameters in common.in is AN INVALID RUN!***
+
+\* Any problem, write [here](https://github.com/Yanhuanjin/JDFTx_scripts/issues) and let me know.
