@@ -13,11 +13,11 @@ For example, if PATH_OF_script_folder is `/home/users/yhjin/example/jdftx/usage/
 
 `export PATH=/home/users/yhjin/example/jdftx/usage/jdftx_scripts:$PATH`.
 
-edit `/jdftx_scripts/fix_potential_jdftx.sh`, change `xsd2pos2` to your Vasp create five input file script, and change this path to your jdftx example dir, `cp ~/example/jdftx/fix_potential/* ./`
+edit `/jdftx_scripts/fix_potential_jdftx.sh`, change `xsd2pos2` to your Vasp script that creates five input files, and also remember to change this line to your jdftx example dir, `cp ~/example/jdftx/fix_potential/* ./`
 
 ## Environment && You need to know
 
-Python2.7
+Succeed in Python2.7
 
 1. IF INPUT FILE IS **POSCAR**:
 
@@ -54,16 +54,15 @@ Your "xsd2pos" script must generate **POSCAR** like aforementioned.
 
 `mkdir test`
  
-`./createLattice.py POSCAR`
-or `./createLattice.py CONTCAR`
+`createLattice.py POSCAR` or `createLattice.py CONTCAR`
 
-`./createStructure.py POSCAR` or `./createStructure.py CONTCAR`
+`createStructure.py POSCAR` or `createStructure.py CONTCAR`
 
 Then, `copy fix_potential/* ./`, you can submit your calculation task by `qsub neutral.script` or `qsub jdftx.sh` or `qsub fix_potential.script`
 
 2. IF INPUT FILE IS **.xsd**:
 
-run `fix_potential_jdftx.sh`, and you will get all the input files.
+run `fix_potential_jdftx.sh`, you will get all the input files, and then you can submit your task.
 
 ### Before submit your task
 
@@ -118,4 +117,4 @@ For example, we wrote those lines in it to do a series of calculations in a pote
     	mv common.nbound Charged$mu.nbound
 	done
 
- 
+ WARNING：***Before do any calculations, you should know what you are doing! A dry run without changing the parameters in common.in is AN INVALID RUN!***
