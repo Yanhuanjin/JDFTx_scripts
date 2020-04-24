@@ -1,5 +1,5 @@
 # JDFTx_scripts
-Scripts to create the input file for JDFTx: Using the POSCAR or .xsd
+Scripts to create the input file for JDFTx: Using the POSCAR/CONTCAR or .xsd
 
 ## Introdution
 
