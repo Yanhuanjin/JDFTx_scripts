@@ -117,6 +117,6 @@ For example, we wrote those lines to do a series of calculations in a potential 
     	mv common.nbound Charged$mu.nbound
 	done
 
- WARNING：***Before do any calculations, you should know what you are doing! ***
+ WARNING：***Before do any calculations, you should know what you are doing!***
 
 \* Any problem, write [here](https://github.com/Yanhuanjin/JDFTx_scripts/issues) and let me know.
