@@ -1,9 +1,9 @@
 # JDFTx_scripts
-Some scripts to create the input file for JDFTx: Using the POSCAR or .xsd
+Scripts to create the input file for JDFTx: Using the POSCAR or .xsd
 
 ## Introdution
 
-This project is created for those who are familiar with VASP but new to use JDFTx. The only needed file is "POSCAR" or ".xsd" file, and the scripts package can generate JDFTx input files.
+This project is created for those who are familiar with VASP but new to JDFTx. The only needed file is "POSCAR" or ".xsd" file, and this scripts package can generate JDFTx input files automatically.
 
 ## Decompression
 
@@ -62,7 +62,7 @@ Then, `copy fix_potential/* ./`, you can submit your calculation task by `qsub n
 
 2. IF INPUT FILE IS **.xsd**:
 
-run `fix_potential_jdftx.sh`, you will get all the input files, and then you can submit your task.
+run `fix_potential_jdftx.sh`, you will get all input files, and then you can submit your task.
 
 ### Before submit your task
 
@@ -75,7 +75,7 @@ Run `j_check_pos.py` to confirm if there is any errors in your `structure.in` fi
 
 Containing the lattice information(bohr). Hexagonal or Orthorhombic. Not support other crystal systems yet. 
 
-(It is just because I used a very stupid way to judge them... NEED YOUR HELP!)
+(It is just because I used a very simple way to judge them... NEED YOUR CONTRIBUTION!)
 
 It looks like this:
 
@@ -86,7 +86,7 @@ It looks like this:
 
 `structure.in`
 
-Containing the structure information(bohr).
+Containing the structure information(in bohr).
 
 It looks like this:
 
@@ -95,7 +95,7 @@ It looks like this:
 
 `common.in`
 
-A common input file, you can change it's input based on your need. **DO REMEMBER TO CHAGE IT TO WHAT YOU WANT!** See [JDFTx](http://jdftx.org/) official website.
+A common input file, you can change it **DO REMEMBER TO CHAGE IT TO YOUR OWN SYSTEM!** See [JDFTx](http://jdftx.org/) official website.
 
 `Charged.in` & `fix_potential.script`
 
@@ -109,7 +109,7 @@ An input file to do a single point neutral calculation.
 
 A scirpt to do a series of fix potential calculations.
 
-For example, we wrote those lines in it to do a series of calculations in a potential range of [-1, 1] eV. (It is also metioned in the official website).
+For example, we wrote those lines to do a series of calculations in a potential range of [-1, 1] eV. (It is also metioned in the official website).
 
 	for iMu in {-10..10..2}; do
     	export mu="$(echo $iMu | awk '{printf("%.4f", -4.4/27.2114+0.1*$1/27.2114)}')"
@@ -117,6 +117,6 @@ For example, we wrote those lines in it to do a series of calculations in a pote
     	mv common.nbound Charged$mu.nbound
 	done
 
- WARNING：***Before do any calculations, you should know what you are doing! A dry run without changing the parameters in common.in is AN INVALID RUN!***
+ WARNING：***Before do any calculations, you should know what you are doing! ***
 
 \* Any problem, write [here](https://github.com/Yanhuanjin/JDFTx_scripts/issues) and let me know.
