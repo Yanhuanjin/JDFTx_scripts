@@ -1,19 +1,9 @@
 # JDFTx_scripts
-Scripts to create the input file for JDFTx: Using the POSCAR/CONTCAR or .xsd
+Scripts to create the input file for JDFTx: Using the POSCAR/CONTCAR
 
 ## Introdution
 
-This project is created for those who are familiar with VASP but new to JDFTx. The only needed file is "POSCAR" or ".xsd" file, and this scripts package can generate JDFTx input files automatically.
-
-## Decompression
-
-Use `tar xvf jdftx_scripts.tar` and `tar xvf fix_potential_example.tar`, and you get two folders, including an example folder and a script folder. Add the script folder to your PATH, add `export PATH=PATH_OF_script_folder:$PATH` to .bashrc and source it.
-
-For example, if PATH_OF_script_folder is `/home/users/yhjin/example/jdftx/usage/jdftx_scripts`, 
-
-`export PATH=/home/users/yhjin/example/jdftx/usage/jdftx_scripts:$PATH`.
-
-edit `/jdftx_scripts/fix_potential_jdftx.sh`, change `xsd2pos2` to your Vasp script that creates five input files, and also remember to change this line to your jdftx example dir, `cp ~/example/jdftx/fix_potential/* ./`
+This project is created for those who are familiar with VASP but new to JDFTx. The only needed file is "POSCAR", and this scripts package can generate JDFTx input files automatically.
 
 ## Environment && You need to know
 
@@ -40,13 +30,6 @@ The **POSCAR** should be in this format:
 	10： 0.2673344787272941  0.4793380419980036  0.4161816185942523   T   T   T
 	11： 0.3481328037468368  0.5044238614747599  0.3622895316252637   F   F   F
 
-2. IF INPUT FILE IS **".xsd"**:
-
-The **"Insight II standard"** mode in Materials Studio is necessary, or you will get in trouble.
-
-Your "xsd2pos" script must generate **POSCAR** like aforementioned.
-
-
 
 ## Usage
 
@@ -58,11 +41,8 @@ Your "xsd2pos" script must generate **POSCAR** like aforementioned.
 
 `createStructure.py POSCAR` or `createStructure.py CONTCAR`
 
-Then, `copy fix_potential/* ./`, you can submit your calculation task by `qsub neutral.script` or `qsub jdftx.sh` or `qsub fix_potential.script`
+Then, `copy fix_potential_example/* ./`, you can submit your calculation task. `fix_potential_example` is your example dir.
 
-2. IF INPUT FILE IS **.xsd**:
-
-run `fix_potential_jdftx.sh`, you will get all input files, and then you can submit your task.
 
 ### Before submit your task
 
@@ -93,30 +73,8 @@ It looks like this:
 	ion H 0.805959664944308 12.093387720668192 17.984219108659595 1  # 1 for T
 	ion H 2.794399985383460 12.726286665969026 15.655411066759651 0  # 0 for F 
 
-`common.in`
+`Input.xyz`
 
-A common input file, you can change it **DO REMEMBER TO CHAGE IT TO YOUR OWN SYSTEM!** See [JDFTx](http://jdftx.org/) official website.
-
-`Charged.in` & `fix_potential.script`
-
-An input file that contains the Charge information, to do a single point fix potential calculation.
-
-`Neutral.in` & `neutral.script`
-
-An input file to do a single point neutral calculation.
-
-`jdftx.sh`
-
-A scirpt to do a series of fix potential calculations.
-
-For example, we wrote those lines to do a series of calculations in a potential range of [-1, 1] eV. (It is also metioned in the official website).
-
-	for iMu in {-10..10..2}; do
-    	export mu="$(echo $iMu | awk '{printf("%.4f", -4.4/27.2114+0.1*$1/27.2114)}')"
-    	mpirun -np $NP -hostfile $PBS_NODEFILE $EXEC -c 1 -i Charged.in | tee Charged$mu.out
-    	mv common.nbound Charged$mu.nbound
-	done
-
- WARNING：***Before do any calculations, you should know what you are doing!***
+You can visualize the input file in Materials Studio.
 
 \* Any problem, write [here](https://github.com/Yanhuanjin/JDFTx_scripts/issues) and let me know.
