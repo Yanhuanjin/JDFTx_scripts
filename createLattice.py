@@ -5,15 +5,9 @@
 import sys
 
 def log():
-"""
-print log.
-"""
 	print ">> Generation Complete.\nPlease make sure:\n 1. The crystal system is right.\n 2. You know how it works!!!\n"
 
-def read_POS(filename):
-"""
-Read the POSCAR/CONTCAR lines2-5, which determine the lattice type. Return a list.
-"""
+def read_POS(filename):  # Read the POSCAR/CONTCAR lines2-5, which determine the lattice type. Return a list.
 	try:
 		with open(filename,'r') as f:
 			lines = f.readlines()
@@ -27,10 +21,7 @@ Read the POSCAR/CONTCAR lines2-5, which determine the lattice type. Return a lis
 		print "'POSCAR' NOT FOUND OR WRONG FILE'.\nPLEASE PUT 'POSCAR' FILE IN PATH !!!"
 		exit()
 
-def convert(line):
-"""
-Convert the lattice constant from Angstrom to Bohr.
-"""
+def convert(line):  # Convert the lattice constant from Angstrom to Bohr.
 	i_list = list()
 	split_line = line.split(' ')
 	for item in split_line:
@@ -39,11 +30,7 @@ Convert the lattice constant from Angstrom to Bohr.
 			i_list.append(i)
 	return i_list	
 
-def is_hex(pos_line):
-"""
-Judge if the lattice type is Hexagonal or Orthorhombic. Not completed yet. (Other types including Triclinic, Monoclinic, Tetragonal, 
-Rhombohedral, Cubic...)
-"""
+def is_hex(pos_line):  # Judge if the lattice type is Hexagonal or Orthorhombic. Not completed yet. 
 	Hexagonal = False
 	for line in pos_line:
 		for num in line:
