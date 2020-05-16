@@ -13,8 +13,6 @@ Succeed in Python2.7
 
 FILE: POSCAR like following(a H2 example). 
 
-The Orientation standard of POSCAR should be **"Insight II standard"** in Materials Studio, to judge the type of crystal system (Hex or Orth), or you can edit the code to fit more crystal systems. 
-
 The **POSCAR** should be in this format:
 (Lattice Lines:Line 3-5, AtomLabel:Line 6, AtomNumber:Line 7, Fractional coordinates:Line 10-end)
 
@@ -44,11 +42,6 @@ The **POSCAR** should be in this format:
 Then, `copy fix_potential_example/* ./`, you can submit your calculation task. `fix_potential_example` is your example dir.
 
 
-### Before submit your task
-
-Run `j_check_pos.py` to confirm if there is any errors in your `structure.in` file, and it will get you remind of set the **"Insight II standard"** mode correctly in Materials Studio.
-
-
 ###  Generated File
 
 `lattice.in`: 
@@ -68,13 +61,10 @@ It looks like this:
 
 Containing the structure information(in bohr).
 
-It looks like this:
+It looks like this(or in fractional coordinates):
 
 	ion H 0.805959664944308 12.093387720668192 17.984219108659595 1  # 1 for T
 	ion H 2.794399985383460 12.726286665969026 15.655411066759651 0  # 0 for F 
 
-`Input.xyz`
-
-You can visualize the input file in Materials Studio.
 
 \* Any problem, write [here](https://github.com/Yanhuanjin/JDFTx_scripts/issues) and let me know.
